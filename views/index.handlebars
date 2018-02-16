@@ -1,0 +1,72 @@
+<!-- JUMBOTRON -->
+<div class="jumbotron" id="jumbotron">
+	<div class="container text-center">
+		<h1>La Burgería</h1>
+		<p>Welcome to La Burgería. Please select a burger from the menu to devour it.<br>Or you can add your own custom burger to the Menu, and then devour it.</p>
+	</div>
+</div>
+<!-- End Jumbotron -->
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+	<div class="container">
+		{{!-- Begin Menu and Devoured List --}}
+		<div class="row">
+			{{!-- MENU --}}
+			<div class="col-md-6 text-center">
+				<h2>The Burger Menu</h2>
+				<ul>
+					{{#each burgers}}
+						{{#unless this.devoured}}
+							<div class="">
+									<form class="burgerButton" action="/burgers/update/{{this.id}}?_method=PUT" method="POST">
+									<p class="menuItem">{{this.id}}. {{this.burger_name}}
+										<input type="hidden" name="devoured" value="true"><button class="btn btn-primary" type="submit">Eat Da Burger!</button>
+										</p>
+									</form>
+								
+							</div>
+						{{/unless}}
+					{{/each}}
+				</ul>
+			</div>
+			{{!-- BURGERS EATEN --}}
+			<div class="col-md-6  text-center">
+				<h2>Devoured Burgers</h2>
+					<ul>
+						{{#each burgers}}
+							{{#if this.devoured}}
+								<li>
+									{{this.id}}
+									{{this.burger_name}}
+								</li>
+							{{/if}}
+						{{/each}}
+					</ul>
+				</div>
+			</div>
+		{{!-- Begin Burger Addition Form  --}}
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h2>Add A Burger!</h2>
+				<form class="create-update-form" action="/api/burgers" method="POST">
+					<div class="form-group">
+						<p>Enter a burger you want to order and click the Submit Order button.</p>
+						<input type="text" id="ca" name="burger_name">
+					</div>
+					<button class="btn-primary" type="submit">Submit Order</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--Footer-->
+<footer class="footer">
+	<div class="container text-center" id="footer">
+		<a href="/api/burgers" style="color:black">Burger Database (Raw JSON)</a> |
+		<a href="https://github.com/m-wolowicz/Burger" style="color:black">My GitHub Repo</a>
+		<p>© 2018 Melissa Wolowicz. All Rights Reserved.</p>
+	</div>
+</footer>
+<!--  End Footer -->
