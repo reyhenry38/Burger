@@ -1,48 +1,46 @@
-// =============================================================================
-// DEPENDENCIES
-// =============================================================================
+// Dependencies
 var express = require("express");
 var router = express.Router();
-
 // Import the model (burger.js) to use its database functions.
-var burger = require("../models/burger.js");
+var db = require("../models");
 
 
-// =============================================================================
-// ROUTERS
-// =============================================================================
-// Create all our routes and set up logic within those routes where required
-
+//Routing
+// Creates all our routes below
+// Grabs all burgers from the burgers database
 router.get("/", function(req, res) {
-    burger.all(function(data) {
-        var hbsObject = {
-            burgers: data
-        };
-        console.log(hbsObject);
-        res.render("index", hbsObject);
-    });
-});
-
-router.post("/api/burgers", function(req, res) {
-    burger.create([
-            "burger_name", "devoured"
-        ], [
-            req.body.burger_name, req.body.devoured
-        ],
-        function(result) {
-            // Send back the ID of the new quote
-            // res.json({ id: result.insertId});
+    db.burger.findAll({})
+        .then(function(data) {
+            var hbsObject = {
+                burgers: data
+            };
+            res.render("index", hbsObject);
         });
-    res.redirect('/');
+});
+
+//Posts a burger to db
+router.post("/", function(req, res) {
+    db.burger.create({ burger_name: req.body.burger_name })
+        .then(function(data) {
+            res.redirect("/#scroll-spot");
+        });
+});
+
+////Put = Updates a burger to db
+router.put("/:id", function(req, res) {
+    var condtion = req.params.id;
+    db.burger.update({
+            devoured: true
+        }, {
+            where: {
+                id: condtion
+            }
+        })
+        .then(function() {
+            res.redirect("/#scroll-spot");
+        });
 });
 
 
-router.put("/burgers/update/:id", function(req, res) {
-    burger.update(req.params.id, function(result) {
-        console.log(result);
-        res.redirect("/");
-    });
-});
 
-// Export routes for server.js to use.
 module.exports = router;

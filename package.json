@@ -1,7 +1,7 @@
 {
-  "name": "burger",
+  "name": "tummy-burger-sequelized",
   "version": "1.0.0",
-  "description": "Restaurant app that lets users input the names of burgers they'd like to eat.",
+  "description": "Tummy burger is a restaurant app that lets users input the names of burgers they'd like to eat, then devour them.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,28 +9,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/m-wolowicz/Burger.git"
+    "url": "git+https://github.com/hadicodes/Tummy-Burger-Sequelized.git"
   },
   "keywords": [
-    "MySQL",
-    "Node",
-    "Express",
-    "Handlebars",
-    "ORM",
-    "Eat-Da-Burger"
+    "sequelized"
   ],
-  "author": "Melissa Wolowicz",
-  "license": "MIT",
+  "author": "Hadi Yousufi",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/m-wolowicz/Burger/issues"
+    "url": "https://github.com/hadicodes/Tummy-Burger-Sequelized/issues"
   },
-  "homepage": "https://github.com/m-wolowicz/Burger#readme",
+  "homepage": "https://github.com/hadicodes/Tummy-Burger-Sequelized#readme",
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1",
     "express-handlebars": "^3.0.0",
-    "method-override": "^2.3.10",
-    "mysql": "^2.15.0",
-    "path": "^0.12.7"
+    "method-override": "^2.3.7",
+    "mysql": "^2.13.0",
+    "sequelize": "^3.30.1"
   }
 }
